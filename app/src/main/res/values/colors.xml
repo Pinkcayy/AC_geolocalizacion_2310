@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Fondo general de la app -->
+    <color name="app_bg">#F5F3EC</color>
+
+    <!-- Paleta principal (verde-olivo) -->
+    <color name="green_dark_1">#0F2A17</color>   <!-- Verde oscuro profundo -->
+    <color name="green_mid_3">#395726</color>    <!-- Verde medio (Mi casa) -->
+    <color name="olive_dark">#6A7E44</color>     <!-- Verde oliva oscuro (Tías Basilio) -->
+    <color name="olive_2">#8A902F</color>        <!-- Verde amarillento (Tías Caral) -->
+    <color name="olive_3">#9A9460</color>        <!-- Oliva suave (Abuela) -->
+
+    <!-- Colores del encabezado -->
+    <color name="header_bg">@color/olive_3</color>
+    <color name="header_title">#FFFFFF</color>
+
+    <!-- Colores de botones (mismo tono que markers) -->
+    <color name="btn1">@color/green_mid_3</color>   <!-- Mi casa -->
+    <color name="btn2">@color/olive_dark</color>    <!-- Tías Basilio -->
+    <color name="btn3">@color/olive_2</color>       <!-- Tías Caral -->
+    <color name="btn4">@color/olive_3</color>       <!-- Abuela -->
+    <color name="btn5">@color/green_dark_1</color>  <!-- Burrito -->
+
+    <!-- Efectos -->
+    <color name="btn_pressed_overlay">#22FFFFFF</color> <!-- Brillo sutil al presionar -->
+    <color name="btn_selected_stroke">#CCFFFFFF</color> <!-- Borde al seleccionar -->
+
+    <!-- Textos generales -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#DDDDDD</color>
 </resources>

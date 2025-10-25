@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">AC_geolocalizacion_2310</string>
     <string name="api_key">AIzaSyDiHCfCjzf-C8A8ZaYPknAQEoJ_WYTxhhk</string>
+    <style name="FamilyItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/bg_item_selector</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:elevation">2dp</item>
+    </style>
 </resources>
