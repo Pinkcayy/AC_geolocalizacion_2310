@@ -1,13 +1,19 @@
 package com.example.ac_geolocalizacion_2310;
 
+
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import android.view.View;
-
-import com.example.ac_geolocalizacion_2310.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,12 +26,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private GoogleMap myMap;
 
-    // Coordenadas (clase sigue casi igual, solo agrego estos campos)
-    private LatLng miCasa;
-    private LatLng tiasBasilio;
-    private LatLng tiasCaral;
-    private LatLng abuela;
-    private LatLng burrito;
+    private LatLng miCasa, tiasBasilio, tiasCaral, abuela, burrito;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +37,30 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        // Clicks de la lista (ya no están comentados)
-        findViewById(R.id.item1).setOnClickListener(v -> moveTo(miCasa));
-        findViewById(R.id.item2).setOnClickListener(v -> moveTo(tiasBasilio));
-        findViewById(R.id.item3).setOnClickListener(v -> moveTo(tiasCaral));
-        findViewById(R.id.item4).setOnClickListener(v -> moveTo(abuela));
-        findViewById(R.id.item5).setOnClickListener(v -> moveTo(burrito));
+        findViewById(R.id.item1).setOnClickListener(v -> {
+            moveTo(miCasa);
+            showPhotoBottom(R.drawable.casa, "Mi casa — Santa Cruz");
+        });
+
+        findViewById(R.id.item2).setOnClickListener(v -> {
+            moveTo(tiasBasilio);
+            showPhotoBottom(R.drawable.tiasbasilio, "Tías — Basilio");
+        });
+
+        findViewById(R.id.item3).setOnClickListener(v -> {
+            moveTo(tiasCaral);
+            showPhotoBottom(R.drawable.tiascaral, "Tías — Caral");
+        });
+
+        findViewById(R.id.item4).setOnClickListener(v -> {
+            moveTo(abuela);
+            showPhotoBottom(R.drawable.abuela, "Abuela");
+        });
+
+        findViewById(R.id.item5).setOnClickListener(v -> {
+            moveTo(burrito);
+            showPhotoBottom(R.drawable.burrito, "Burrito");
+        });
     }
 
     @Override
@@ -59,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Cámara inicial
         myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miCasa, 16f));
 
-        // Markers con el MISMO tono de los botones (convierte color a HUE)
+        // Markers con mismo tono que los botones
         addColoredMarker(miCasa,      "Mi casa — Santa Cruz", R.color.green_mid_3);
         addColoredMarker(tiasBasilio, "Tías — Basilio",       R.color.olive_dark);
         addColoredMarker(tiasCaral,   "Tías — Caral",         R.color.olive_2);
@@ -86,9 +105,39 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /** Muestra la foto en una tarjeta inferior (con bordes redondeados) */
+    private void showPhotoBottom(int drawableRes, String title){
+        Dialog d = new Dialog(this);
+        View view = getLayoutInflater().inflate(R.layout.dialog_photo_bottom, null, false);
+
+        ImageView img = view.findViewById(R.id.imgPhoto);
+        TextView tv  = view.findViewById(R.id.tvPlace);
+
+        img.setImageResource(drawableRes);
+        tv.setText(title);
+
+        view.setOnClickListener(v -> d.dismiss());
+
+        d.setContentView(view);
+
+        Window w = d.getWindow();
+        if (w != null) {
+            w.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            w.setLayout(
+                    android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                    android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+            );
+            w.setGravity(Gravity.BOTTOM);
+            w.getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+        }
+
+        d.show();
+    }
+
     @Override
     public void onPointerCaptureChanged(boolean hasCapture)
     {
         super.onPointerCaptureChanged(hasCapture);
     }
 }
+
