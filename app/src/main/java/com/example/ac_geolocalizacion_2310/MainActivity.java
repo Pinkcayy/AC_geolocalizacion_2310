@@ -68,17 +68,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     {
         myMap = googleMap;
 
-        // Coordenadas exactas
         miCasa      = new LatLng(-17.724320799499974, -63.15568343121466);
         tiasBasilio = new LatLng(-16.494309761392127, -68.2029533763114);
         tiasCaral   = new LatLng(-17.420413974438436, -66.14284258254136);
         abuela      = new LatLng(-20.73944379713988, -67.66088331811669);
         burrito     = new LatLng(-20.709437635755233, -67.70732123909214);
 
-        // Cámara inicial
         myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miCasa, 16f));
 
-        // Markers con mismo tono que los botones
         addColoredMarker(miCasa,      "Mi casa — Santa Cruz", R.color.green_mid_3);
         addColoredMarker(tiasBasilio, "Tías — Basilio",       R.color.olive_dark);
         addColoredMarker(tiasCaral,   "Tías — Caral",         R.color.olive_2);
@@ -105,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    /** Muestra la foto en una tarjeta inferior (con bordes redondeados) */
     private void showPhotoBottom(int drawableRes, String title){
         Dialog d = new Dialog(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_photo_bottom, null, false);
